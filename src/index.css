@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@theme {
+  --color-primary: #000010;
+  --color-secondary: #948979;
+  --color-container: #393E46;
+  --color-text:#DFD0B8;
+}
+
+:root{
+  background-color: #000010;
+  color: #DFD0B8;
+}
+
+.page-container{
+  display: flex;
+  margin: auto;
+  margin-top: 5.5rem;
+  width: clamp(350px,90%,1280px);
+}

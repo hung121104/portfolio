@@ -1,0 +1,45 @@
+
+/* Corner border styles */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::before,
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  transition: all 0.3s ease;
+}
+
+/* Top-left corner */
+.nav-link::before {
+  top: 0;
+  left: 0;
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+}
+
+/* Bottom-right corner */
+.nav-link::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 2px solid transparent;
+  border-right: 2px solid transparent;
+}
+
+.nav-link:hover::before {
+  border-top-color: var(--color-cyan-300); /* cyan-300 */
+  border-left-color: var(--color-cyan-300);
+  width: 10%;
+  height: 10%;
+}
+
+.nav-link:hover::after {
+  border-bottom-color: var(--color-cyan-300);
+  border-right-color: var(--color-cyan-300);
+  width: 10%;
+  height: 10%;
+}
