@@ -1,22 +1,48 @@
 import React from "react";
+import useHoverBox from "../hook/useHoverBox.js";
 import { Link } from "react-router-dom";
-
-import "../styles/navbar.css"
+import "../styles/navbar.css";
 
 function Navbar() {
+  const { box, handleEnter, handleLeave } = useHoverBox();
+
+  const links = [
+    { to: "/", label: "Home" },
+    { to: "/about", label: "About" },
+  ];
+
   return (
-    <nav className="absolute top-0 left-1/2 -translate-x-1/2">
-      <ul className="grid grid-cols-2 gap-14 h-10 my-5">
-        <li className="flex justify-center items-center ">
-          <Link to="/" className="flex items-center justify-center text-lg text-center p-2 hover:text-cyan-200 w-full h-full nav-link">
-            Home
-          </Link>
-        </li>
-        <li className="flex justify-center items-center">
-          <Link to="/about" className="flex items-center justify-center text-lg text-center p-2 hover:text-cyan-300 w-full h-full nav-link">
-            About Me
-          </Link>
-        </li>
+    <nav className="flex justify-between my-4 page-container">
+      <Link className="my-auto font-bold text-2xl">NGUYEN DUONG HUNG</Link>
+      <ul className="relative flex nav-container">
+        {links.map((item) => (
+          <li
+            key={item.label}
+            onMouseEnter={handleEnter}
+            onMouseLeave={handleLeave}
+          >
+            <Link
+              className="flex justify-center items-center p-3 w-20 font-bold text-white"
+              to={item.to}
+            >
+              {item.label}
+            </Link>
+          </li>
+        ))}
+        {box ? (
+          <span
+            className="absolute bg-white rounded-2xl transition-all duration-300 ease-in-out pointer-events-none mix-blend-difference"
+            //keep the inline styling tailwind render can cause issues
+            style={{
+              top: box.top,
+              left: box.left,
+              width: box.width,
+              height: box.height,
+            }}
+          />
+        ) : (
+          <span className="top-full left-0 absolute bg-white rounded-2xl w-full h-0.5 transition-all duration-300 ease-in-out" />
+        )}
       </ul>
     </nav>
   );

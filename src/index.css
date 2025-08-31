@@ -1,21 +1,18 @@
 @import "tailwindcss";
 @theme {
-  /* --color-primary: #000010;
-  --color-secondary: #948979;
-  --color-container: #393E46;
-  --color-text:#DFD0B8; */
-  --color-squared:#171717;
-  --color-squared-hover:#242424;
+  --color-text-main:#ffffff;
+  --color-bg-primary:#0A0119;
+  --color-container: #1A1127;
 }
 
 :root{
-  background-color: #171717;
-  color: #DFD0B8;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-main);
+  overflow-x: hidden;
 }
 
 .page-container{
-  display: flex;
-  margin: auto;
-  margin-top: 5.5rem;
+  margin-left: auto;
+  margin-right: auto;
   width: clamp(350px,90%,1280px);
 }
