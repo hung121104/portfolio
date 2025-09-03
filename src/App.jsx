@@ -6,11 +6,12 @@ import Router from "./router/router";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 
+
 function App() {
   return (
     <>
     <BrowserRouter>
-      <Navbar />
+      <Navbar/>
       <Router />
       <Footer/>
     </BrowserRouter>
