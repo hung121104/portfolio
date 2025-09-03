@@ -1,18 +1,35 @@
 @import "tailwindcss";
+
 @theme {
-  --color-text-main:#ffffff;
-  --color-bg-primary:#0A0119;
-  --color-container: #1A1127;
+  --color-base: #121212; /* OKLCH: oklch(0.1822 0 0) */
+  --color-1dp: oklch(0.2118 0 0); /* 5% white overlay */
+  --color-2dp: oklch(0.2245 0 0); /* 7% white overlay */
+  --color-3dp: oklch(0.2310 0 0); /* 8% white overlay */
+  --color-4dp: oklch(0.2409 0 0); /* 9% white overlay */
+  --color-6dp: oklch(0.2572 0 0); /* 11% white overlay */
+  --color-8dp: oklch(0.2638 0 0); /* 12% white overlay */
+  --color-12dp: oklch(0.2802 0 0); /* 14% white overlay */
+  --color-16dp: oklch(0.2868 0 0); /* 15% white overlay */
+  --color-24dp: oklch(0.2967 0 0); /* 16% white overlay */
+  --color-primary: #bb86fc;
+  --color-primary-dark: #bb86fc;
+  --color-secondary: #03dac6;
+  --color-secondary-dark: #03dac6;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-disabled: rgba(255, 255, 255, 0.5);
+  --color-error: #cf6679;
 }
 
-:root{
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-main);
+:root {
+  background-color: var(--color-base);
+  color: var(--color-text-primary);
   overflow-x: hidden;
 }
 
-.page-container{
+.page-container {
   margin-left: auto;
   margin-right: auto;
-  width: clamp(350px,90%,1280px);
+  width: clamp(350px, 90%, 1280px);
 }
+

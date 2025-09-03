@@ -2,7 +2,7 @@ import React from 'react'
 
 function About() {
   return (
-    <div className='page-container bg-container text-primary'>About boy</div>
+    <div className='bg-bg-base text-primary page-container'>About boy</div>
   )
 }
 
