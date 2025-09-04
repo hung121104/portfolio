@@ -28,7 +28,7 @@ function Navbar() {
         <ul className="relative flex">
           {box ? (
             <span
-              className="absolute bg-8dp rounded-2xl transition-all duration-300 ease-in-out pointer-events-none"
+              className="absolute bg-primary invert rounded-2xl transition-all duration-300 ease-in-out pointer-events-none"
               //keep the inline styling tailwind render can cause issues
               style={{
                 top: box.top,
@@ -38,7 +38,7 @@ function Navbar() {
               }}
             />
           ) : (
-            <span className="top-full left-1/2 absolute bg-8dp rounded-2xl w-[85%] h-0.5 transition-all -translate-x-1/2 duration-300 ease-in-out" />
+            <span className="top-full left-1/2 absolute bg-primary rounded-2xl w-[85%] h-0.5 transition-all -translate-x-1/2 duration-300 ease-in-out" />
           )}
           {links.map((item) => (
             <li
@@ -54,6 +54,20 @@ function Navbar() {
               </Link>
             </li>
           ))}
+          {box ? (
+            <span
+              className="absolute bg-white rounded-2xl transition-all duration-300 ease-in-out pointer-events-none mix-blend-difference"
+              //keep the inline styling tailwind render can cause issues
+              style={{
+                top: box.top,
+                left: box.left,
+                width: box.width,
+                height: box.height,
+              }}
+            />
+          ) : (
+            <span className="top-full left-1/2 absolute bg-primary rounded-2xl w-[85%] h-0.5 transition-all -translate-x-1/2 duration-300 ease-in-out" />
+          )}
         </ul>
       </motion.div>
     </nav>
