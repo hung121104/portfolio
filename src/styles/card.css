@@ -1,0 +1,66 @@
+.holographic {
+  /* default fallback mask */
+  --holo-mask: url("");
+
+  /* use custom property so JS can override if needed */
+  mask-image: var(--holo-mask, url(""));
+  mask-repeat: repeat;
+  mask-position: center;
+  mask-size: 40px 40px;
+
+  -webkit-mask-image: var(--holo-mask, url(""));
+  -webkit-mask-repeat: repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: 40px 40px;
+
+  will-change: transform, filter, opacity;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  
+}
+
+/* also ensure the inner image (holoRef) uses the same transition so JS changes to its transform animate */
+.holographic img {
+  will-change: transform, filter, opacity;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Utility classes to remove inline repetition */
+.no-drag {
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* optional: explicit class for pointer-disabled elements (Tailwind already provides pointer-events-none) */
+.no-pointer {
+  pointer-events: none;
+}
+
+/* Centralized vars for the tilt card */
+#card {
+  /* configurable values */
+  --card-perspective: 1000px;
+  --card-transition: all 0.2s ease; /* default */
+  --card-tilt-transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+  --card-reset-transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  perspective: var(--card-perspective);
+  transition: var(--card-transition);
+  transform-style: preserve-3d;
+
+  /* transform uses the shared mouse vars already set by JS */
+  transform: rotateX(calc(var(--mouse-y, 0) * -15deg))
+    rotateY(calc(var(--mouse-x, 0) * 15deg));
+}
+
+/* Gloss / shine overlay uses a CSS-var driven transition */
+.gloss {
+  --gloss-transition: opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: var(--gloss-transition);
+  will-change: transform, opacity;
+}
