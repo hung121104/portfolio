@@ -13,7 +13,11 @@ function Home() {
           </p>
         </div>
         <GlossyCard
-          src="/assets/aboutMe/_NPA1230 (2)compress.webp"
+          srcBG="/assets/aboutMe/My_IMG_BG.webp"
+          srcMain="/assets/aboutMe/My_IMG_Main.webp"
+          srcIcon="/assets/techSVG/Tailwind_CSS.svg"
+          width={400}
+          height={600}
           alt="Project 1"
           padding={0}
         />
