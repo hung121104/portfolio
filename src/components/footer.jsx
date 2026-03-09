@@ -34,7 +34,7 @@ function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             onMouseEnter={() => setActiveButton(name)}
-            className={`flex justify-end items-center ${isActive ? "bg-linear-40 from-white from-0% to-24dp to-70%" : "bg-24dp"}  p-0 rounded-full h-9 overflow-hidden text-black text-xs duration-300 ease-in-out ${
+            className={`flex justify-end items-center bg-24dp  p-0 rounded-full h-9 overflow-hidden text-white text-xs duration-300 ease-in-out ${
               isActive ? "w-30" : "w-9"
             }`}
           >

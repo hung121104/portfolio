@@ -10,20 +10,15 @@ function Navbar() {
 
   const links = [
     { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
+    { to: "/about", label: "Contact" },
   ];
 
   return (
     <nav className="flex justify-between my-4 page-container">
-      <Link className="my-auto font-bold text-2xl">NGUYEN DUONG HUNG</Link>
+      <Link to={"/"} className="my-auto font-bold text-2xl">NGUYEN DUONG HUNG</Link>
       <motion.div
         ref={containerRef}
         className="z-10 bg-1dp bg-bg-base px-2 rounded-2xl nav-container"
-        drag
-        dragConstraints="parent" // Use parent as constraint instead
-        dragMomentum={false}
-        whileTap={{ cursor: "grabbing" }}
-        dragElastic={0.1}
       >
         <ul className="relative flex">
           {box ? (

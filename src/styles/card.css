@@ -64,3 +64,13 @@
   transition: var(--gloss-transition);
   will-change: transform, opacity;
 }
+
+#card:hover .gloss {
+  opacity: 0.2; /* show gloss on parent hover */
+}
+
+/* ensure overlays never block pointer events */
+.gloss {
+  pointer-events: none;
+  transition: opacity 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}

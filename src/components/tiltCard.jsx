@@ -1,7 +1,6 @@
 import React, { useRef, useCallback } from "react";
 import "../styles/card.css";
-import { main } from "framer-motion/client";
-
+import { motion } from "framer-motion";
 const GlossyCard = ({
   srcBG,
   srcMain,
@@ -20,7 +19,7 @@ const GlossyCard = ({
     const card = cardRef.current;
     const gloss = glossRef.current;
     const holo = holoRef.current;
-    if (!card || !gloss || !holo) return; // <- ensure holo exists
+    if (!card || !gloss || !holo) return; 
 
     // ensure fast interactive transition while moving
     card.style.setProperty(
@@ -54,14 +53,13 @@ const GlossyCard = ({
 
     // Calculate gloss opacity based on distance from center (max 0.6)
     const glossOpacity = Math.min(
-      0.6,
+      0.5,
       Math.abs(clampedX) * 0.4 + Math.abs(clampedY) * 0.4
     );
 
     // Apply gloss effect: opacity and position based on tilt direction
     gloss.style.opacity = glossOpacity;
 
-    // while dragging/moving we don't want the holo to animate (snappy)
     // remove any transition so transforms apply immediately
     holo.style.transition = "none";
 
@@ -84,28 +82,24 @@ const GlossyCard = ({
       "--card-transition",
       "transform 600ms cubic-bezier(0.22,1,0.36,1)"
     );
+    card.style.setProperty("--card-opacity", "0");
+    card.style.setProperty("--mouse-x", 0);
+    card.style.setProperty("--mouse-y", 0);
+    
     gloss.style.setProperty(
       "--gloss-transition",
       "opacity 520ms cubic-bezier(0.22,1,0.36,1), transform 520ms cubic-bezier(0.22,1,0.36,1)"
     );
-    card.style.setProperty("--card-opacity", "0");
-
-    card.style.setProperty("--mouse-x", 0);
-    card.style.setProperty("--mouse-y", 0);
-
     gloss.style.opacity = "0";
     gloss.style.transform = "translate3d(0%, 0%, 0) scale(2)";
-
+    
     // reset holo with an animated transition
     if (holo) {
-      // set a transition so the holo eases back to its resting state
-      holo.style.transition =
-        "transform 600ms cubic-bezier(0.22,1,0.36,1), filter 600ms cubic-bezier(0.22,1,0.36,1)";
       // animate transform back to identity
       holo.style.transform = "translate3d(0%, 0%, 0) scale(1)";
       // if you previously set filters on holo, animate them back to neutral
       holo.style.filter = "";
-      // optional: clear transition after it's done to avoid interfering with next interaction
+      //clear transition after it's done to avoid interfering with next interaction
       setTimeout(() => {
         if (holo) holo.style.transition = "none";
       }, 620);
@@ -178,7 +172,7 @@ const GlossyCard = ({
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerLeave}
-        className="relative shadow-lg border-1 border-primary rounded-xl overflow-hidden perspective-distant transition-all backface-hidden cursor-pointer select-none will-change-transform"
+        className="relative shadow-lg border-primary hover:border-2 rounded-xl overflow-hidden perspective-distant transition-all backface-hidden cursor-pointer select-none will-change-transform"
         style={{
           /* keep sizing and touch action here, move transition & transform to CSS vars */
           width: `${width - padding}px`,
@@ -186,6 +180,7 @@ const GlossyCard = ({
           touchAction: "none", // Prevent default touch behaviors
         }}
       >
+        
         <img
           src={srcBG}
           alt={alt}
@@ -194,9 +189,10 @@ const GlossyCard = ({
         />
 
         <div
-          className="relative opacity-20 w-full h-full overflow-hidden perspective-distant pointer-events-none holographic no-drag"
+          className="relative opacity-10 w-full h-full overflow-hidden perspective-distant pointer-events-none holographic no-drag"
           style={{
             transform: `rotateX(calc(var(--mouse-y, 0) * -16deg)) rotateY(calc(var(--mouse-x, 0) * 16deg)) translateZ(-100px) scale(1.7)`,
+            transition: "transform 600ms cubic-bezier(0.22,1,0.36,1)", // smooth return to normal
             /* only set this when srcIcon is dynamic; if undefined, CSS fallback is used */
             ...(srcIcon ? { "--holo-mask": `url(${srcIcon})` } : {}),
           }}
@@ -222,7 +218,7 @@ const GlossyCard = ({
           style={{
             background:
               "radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 30%, rgba(255,255,255,0) 70%)",
-            transition: "0.1s ease-out", // small fallback, JS will update --gloss-transition
+            transition: "0.1s ease-out",
           }}
         />
       </div>
